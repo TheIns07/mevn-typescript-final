@@ -1,9 +1,8 @@
 import express from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
-import tasksRoutes from './routes/routes'
-
 import router from './routes/routes'
+
 const app = express()
 
 app.use(cors());

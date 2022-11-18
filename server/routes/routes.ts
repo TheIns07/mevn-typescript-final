@@ -14,8 +14,8 @@ router.get('/tasks', async (req, res) => {
 });
 
 router.post('/tasks', async (req, res) => {
-   const { title, description } = req.body
-   const task = new Task({ title, description })
+   const { client, product, price, quantity, date } = req.body
+   const task = new Task({ client, product, price, quantity, date })
    await task.save()
 
    res.json(task)

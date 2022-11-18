@@ -1,15 +1,32 @@
 import {Schema, model} from 'mongoose'
 
 const taskSchema = new Schema({
-    title: {
+    client: {
         type: String,
         required: true
     },
-    description: {
+    product: {
         type: String, 
         require: true,
         trim: true
     },
+    price: {
+        type: Number, 
+        require: true,
+        trim: true
+    },
+
+    quantity: {
+        type: Number, 
+        require: true,
+        trim: true
+    },
+    date: {
+        type: Date, 
+        require: true,
+        trim: true
+    },
+    
     done: {
         type: Boolean,
         default: false
