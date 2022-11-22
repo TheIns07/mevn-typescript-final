@@ -3,7 +3,8 @@ import {Schema, model} from 'mongoose'
 const taskSchema = new Schema({
     client: {
         type: String,
-        required: true
+        required: true,
+        trim: true
     },
     product: {
         type: String, 

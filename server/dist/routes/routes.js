@@ -24,8 +24,8 @@ router.get('/tasks', (req, res) => __awaiter(void 0, void 0, void 0, function* (
     res.send(tasks);
 }));
 router.post('/tasks', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { title, description } = req.body;
-    const task = new Task_1.default({ title, description });
+    const { client, product, price, quantity, date } = req.body;
+    const task = new Task_1.default({ client, product, price, quantity, date });
     yield task.save();
     res.json(task);
 }));

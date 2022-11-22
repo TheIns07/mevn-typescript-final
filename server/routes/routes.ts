@@ -17,7 +17,6 @@ router.post('/tasks', async (req, res) => {
    const { client, product, price, quantity, date } = req.body
    const task = new Task({ client, product, price, quantity, date })
    await task.save()
-
    res.json(task)
 });
 
