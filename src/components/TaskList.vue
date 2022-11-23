@@ -1,9 +1,13 @@
 <template>
-    <ul>
-        <li v-for="(task, index) in tasks" :key="task._id" @click="$router.push(`/tasks/${task._id}`)">
-           {{index}}, {{task.client}}, {{task.date}}
-        </li>
-    </ul>
+    <div class="container p-5">
+        <ul class="list-group">
+            <li style = "cursor: pointer;" class="list-group-item list-group-item-action" v-for="(task, index) in tasks" :key="task._id"
+                @click="$router.push(`/tasks/${task._id}`)">
+                {{ index + 1 }}, {{ task.client }}, {{ task.date }}
+            </li>
+        </ul>
+    </div>
+
 </template>
 
 <script lang="ts">
@@ -16,13 +20,13 @@ export default defineComponent({
             tasks: [] as Task[]
         }
     },
-    methods:{
-        async loadTasks(){
+    methods: {
+        async loadTasks() {
             const res = await getTasks()
             console.log(res)
         }
     },
-    mounted(){
+    mounted() {
         this.loadTasks()
     },
 })

@@ -1,15 +1,22 @@
 <template>
-    <h1>Task Detail</h1>
-    <form @submit.prevent="handleUpdate()">
-        <input type="text" v-model="currentTask.client"/>
-        <input type="text" v-model="currentTask.date"/>
-        <input type="text" v-model="currentTask.product"/>
-        <input type="text" v-model="currentTask.quantity"/>
-        <input type="text" v-model="currentTask.price"/>
-        <button>Update</button>
+
+    <div class="col-md-4 offset-md-4">
+        <h1 class="text-center h3 mb-3">Task Detail</h1>
+        <form @submit.prevent="handleUpdate()" class="card card-body">
+        <input type="text" class="form-control mb-3" v-model="currentTask.client"/>
+        <input type="text" class="form-control mb-3" v-model="currentTask.date"/>
+        <input type="text" class="form-control mb-3" v-model="currentTask.product"/>
+        <input type="text" class="form-control mb-3" v-model="currentTask.quantity"/>
+        <input type="text" class="form-control mb-3" v-model="currentTask.price"/>
+        <button class="btn btn-primary" >Update</button>
         
     </form>
-    <button @click="handleDelete()">Delete</button>
+    <div class="text-center">
+        <button @click="handleDelete()" class="btn btn-danger">Delete</button>
+    </div>
+    </div>
+   
+    
 </template>
 
 <script lang="ts">
