@@ -5,9 +5,9 @@
         <form @submit.prevent="saveTask()" class="card card-body">
         <input type="text" class = "form-control mb-3" autofocus placeholder="Introduce un cliente" v-model="task.client" />
         <input type="text" class = "form-control mb-3" placeholder="Introduce un producto" v-model="task.product" />
-        <input type="number" class = "form-control mb-3" placeholder="Introduce un precio" v-model="task.price" />
         <input type="number" class = "form-control mb-3" placeholder="Introduce una cantidad" v-model="task.quantity" />
-        <input type="date" class = "form-control mb-3"  placeholder="Introduce una Fecha" v-model="task.date" />
+        <input type="number" class = "form-control mb-3" placeholder="Introduce un precio" v-model="task.price" />
+        <input type="date" id = "fecha" class = "form-control mb-3"  placeholder="Introduce una Fecha" v-model="task.date" />
         <button class="btn btn-primary">Guardar</button>
     </form>
     </div>
@@ -19,9 +19,9 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-
 import { saveTask } from '@/services/TaskService'
 import { Task } from '@/Interfaces/Task';
+
 export default defineComponent({
     data() {
         return {

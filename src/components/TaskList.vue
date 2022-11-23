@@ -3,7 +3,7 @@
         <ul class="list-group">
             <li style = "cursor: pointer;" class="list-group-item list-group-item-action" v-for="(task, index) in tasks" :key="task._id"
                 @click="$router.push(`/tasks/${task._id}`)">
-                {{ index + 1 }}, {{ task.client }}, {{ task.date }}
+                {{ index + 1 }}, {{ task.client }}
             </li>
         </ul>
     </div>

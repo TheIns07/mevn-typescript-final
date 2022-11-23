@@ -1,14 +1,14 @@
 <template>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container">
-            <router-link to = "/" class = "navbar-brand">MEVN Project APP WEB</router-link>
+            <router-link to = "/" class = "navbar-brand">Creación de Ventas</router-link>
             <div>
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <router-link class="nav-link" to="/">Tasks</router-link>
+                        <router-link class="nav-link" to="/">Lista Ventas</router-link>
                     </li>
                     <li class="nav-item">
-                        <router-link class="nav-link" to="/tasks/new">Create</router-link>
+                        <router-link class="nav-link" to="/tasks/new">Crear Venta</router-link>
                     </li>
                 </ul>
             </div>
