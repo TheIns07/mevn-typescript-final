@@ -4,7 +4,8 @@ const mongoose_1 = require("mongoose");
 const taskSchema = new mongoose_1.Schema({
     client: {
         type: String,
-        required: true
+        required: true,
+        trim: true
     },
     product: {
         type: String,

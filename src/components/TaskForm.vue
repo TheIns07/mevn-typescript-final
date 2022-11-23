@@ -24,6 +24,7 @@ export default defineComponent({
         async saveTask() {
             const res = await saveTask(this.task)
             console.log(res)
+            this.$router.push({name: 'tasks'})
         },
     },
 })
