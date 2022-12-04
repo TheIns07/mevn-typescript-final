@@ -1,12 +1,21 @@
 <template>
-    <div class="container p-5">
+    <div class="container p-4">
         <h3>Lista de Ventas Registradas</h3>
         <ul class="list-group">
-            <li class="list-group-item list-group-item-action p-4" v-for="(task, index) in tasks" :key="task._id"
-                >
-                {{ "Index: " + index }}: {{ "Cliente: " + task.client }} {{ "Fecha: " + task.date }}
-                <button @click="$router.push(`/tasks/${task._id}`)" class="btn btn-primary">Editar</button>
-                <button @click="handleDelete(task._id)" class="btn btn-danger">Borrar</button>
+            <li class="list-group-item list-group-item-action p-3" v-for="(task, index) in tasks" :key="task._id">
+                <div>
+                    <p class="lead">
+                        {{ "Index: " + index }}: {{ "Cliente: " + task.client }} {{ "Producto: " + task.product }} {{
+                                "Cantidad: " + task.price
+                        }}
+                    </p>
+                    <div class="btn-group p-2">
+                        <button @click="$router.push(`/tasks/${task._id}`)" class="btn btn-primary">Editar</button>
+                        <button @click="handleDelete(task._id)" class="btn btn-danger">Borrar</button>
+                    </div>
+
+                </div>
+
             </li>
         </ul>
     </div>
@@ -33,10 +42,9 @@ export default defineComponent({
         },
         async handleDelete(id: string) {
             try {
-                if (typeof this.$route.params.id === "string") {
-                    await deleteTask(id);
-                    this.$router.push("/");
-                }
+                console.log(id)
+                await deleteTask(id);
+                this.$router.push("/");
             } catch (error) {
                 console.log(error)
             }
