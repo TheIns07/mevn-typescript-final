@@ -23,22 +23,15 @@ router.get('/tasks', (req, res) => __awaiter(void 0, void 0, void 0, function* (
     console.log(tasks);
     res.send(tasks);
 }));
+router.get('/tasks/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const task = yield Task_1.default.findById(req.params.id);
+    res.send(task);
+}));
 router.post('/tasks', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { client, product, price, quantity, date } = req.body;
     const task = new Task_1.default({ client, product, price, quantity, date });
     yield task.save();
     res.json(task);
-}));
-router.get('/tasks/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const task = Task_1.default.findById(req.params.id);
-        if (!task)
-            return res.status(404).json({ message: "Task not found" });
-        res.send(task);
-    }
-    catch (error) {
-        return res.status(500).send(error);
-    }
 }));
 router.delete('/tasks/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
