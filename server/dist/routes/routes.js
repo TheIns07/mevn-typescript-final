@@ -15,17 +15,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const Task_1 = __importDefault(require("../models/Task"));
 const router = (0, express_1.Router)();
-router.get('/', (req, res) => {
-    res.send("Obteniendo tareas");
-});
 router.get('/tasks', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const tasks = yield Task_1.default.find();
     console.log(tasks);
     res.send(tasks);
-}));
-router.get('/tasks/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const task = yield Task_1.default.findById(req.params.id);
-    res.send(task);
 }));
 router.post('/tasks', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { client, product, price, quantity, date } = req.body;
@@ -33,21 +26,18 @@ router.post('/tasks', (req, res) => __awaiter(void 0, void 0, void 0, function* 
     yield task.save();
     res.json(task);
 }));
-router.delete('/tasks/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const task = yield Task_1.default.findByIdAndDelete(req.body.id);
-        if (!task)
-            return res.status(404).json({ message: "Task not found" });
-        return res.json(task);
-    }
-    catch (error) {
-        return res.status(500).send(error);
-    }
+router.get('/tasks/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const task = yield Task_1.default.findById(req.params.id);
+    res.send(task);
 }));
-router.put('/tasks/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const tasks = yield Task_1.default.findByIdAndUpdate(req.body.id, req.body, {
-        new: true
+router.delete('/tasks/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const task = yield Task_1.default.findByIdAndDelete(req.body.id);
+    return res.json(task);
+}));
+router.put("/tasks/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const updatedTask = yield Task_1.default.findByIdAndUpdate(req.params.id, req.body, {
+        new: true,
     });
-    res.json(tasks);
+    res.json(updatedTask);
 }));
 exports.default = router;

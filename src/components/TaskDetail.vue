@@ -1,22 +1,23 @@
 <template>
     <div class="col-md-4 offset-md-4">
         <h1 class="text-center h3 mb-3">Detalle de la Venta</h1>
-        <form class="card card-body">
+        <form @submit.prevent="handleUpdate()" class="card card-body">
             <input type="text" class="form-control mb-3" v-model="currentTask.client" />
-            <input type="date" class="form-control mb-3" />
+            <input type="text" class="form-control mb-3" v-model="currentTask.date" />
             <input type="text" class="form-control mb-3" v-model="currentTask.product" />
             <input type="number" class="form-control mb-3" v-model="currentTask.quantity" />
             <input type="number" class="form-control mb-3" v-model="currentTask.price" />
-            <div class="text-center d-flex flex-column ">
-                <button @click="handleUpdate()" class="btn btn-primary">Update</button>
-            </div>
+            <button class="btn btn-primary">Update</button>
         </form>
+        <div class="text-center d-flex flex-column ">
+            <button @click="handleDelete()" class="btn btn-danger">Delete</button>
+        </div>
     </div>
 </template>
 
 <script lang="ts">
 import { Task } from "@/Interfaces/Task";
-import { getTask, updateTask } from "@/services/TaskService";
+import { deleteTask, getTask, updateTask } from "@/services/TaskService";
 import { defineComponent } from "@vue/runtime-core";
 import moment from 'moment'
 
@@ -29,21 +30,35 @@ export default defineComponent({
     },
     methods: {
         async loadTask(id: string) {
-            const res = (await getTask(id)).data
-            this.currentTask = res
-            console.log(res)
-        },
-        async handleUpdate() {
-            if (typeof this.$route.params.id === "string") {
-                const res = await updateTask(this.$route.params.id, this.currentTask)
-                console.log(res)
-                this.$router.push("/")
+            try {
+                const { data } = await getTask(id);
+                this.currentTask = data;
+            } catch (error) {
+                console.error(error);
             }
         },
-        async formatDate () {
-             var dateFormated = moment(this.currentTask.date, "MM-DD-YYYY").valueOf();
-             console.log(dateFormated)
-             return dateFormated
+        async handleUpdate() {
+            try {
+                if (typeof this.$route.params.id === "string") {
+                    await updateTask(this.$route.params.id, this.currentTask)
+                    this.$router.push("/")
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        },
+        async formatDate() {
+            return moment(this.currentTask.date, "MM-DD-YYYY").valueOf();
+        },
+        async handleDelete() {
+            try {
+                if (typeof this.$route.params.id === "string") {
+                    await deleteTask(this.$route.params.id);
+                    this.$router.push("/");
+                }
+            } catch (error) {
+                console.log(error)
+            }
         }
     },
     mounted() {

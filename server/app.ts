@@ -10,7 +10,7 @@ app.use(cors(({origin: true, credentials: true})));
 app.use(morgan('dev'));
 app.use(express.json());
 
-app.use('/', router)
+app.use('/api', router)
 app.use(express.static(path.join(__dirname, "..", "..", "dist")));
 
 export default app

@@ -26,11 +26,11 @@ router.delete('/tasks/:id', async (req, res) => {
    return res.json(task)
 });
 
-router.put('/tasks/:id', async (req, res) => {
+router.put("/tasks/:id", async (req, res) => {
    const updatedTask = await Task.findByIdAndUpdate(req.params.id, req.body, {
-      new: true
-   })
+     new: true,
+   });
    res.json(updatedTask);
-});
+ });
 
 export default router;
