@@ -4,7 +4,7 @@ const routes: RouteRecordRaw[] = [
     {
       path: "/",
       alias: "/tasks",
-      name: "tasks",
+      name: "tasks-list",
       component: () => import("./../components/TaskList.vue"),
     },
     {
