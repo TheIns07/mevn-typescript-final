@@ -31,7 +31,7 @@ router.get('/tasks/:id', (req, res) => __awaiter(void 0, void 0, void 0, functio
     res.send(task);
 }));
 router.delete('/tasks/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const task = yield Task_1.default.findByIdAndDelete(req.body.id);
+    const task = yield Task_1.default.findByIdAndDelete(req.params.id);
     return res.json(task);
 }));
 router.put("/tasks/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {

@@ -22,7 +22,7 @@ router.get('/tasks/:id', async (req, res) => {
 });
 
 router.delete('/tasks/:id', async (req, res) => {
-   const task = await Task.findByIdAndDelete(req.body.id)
+   const task = await Task.findByIdAndDelete(req.params.id)
    return res.json(task)
 });
 

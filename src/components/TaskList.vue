@@ -5,17 +5,15 @@
             <li class="list-group-item list-group-item-action p-3" v-for="(task, index) in tasks" :key="task._id">
                 <div>
                     <p class="lead">
-                        {{ "Index: " + index }}: {{ "Cliente: " + task.client }} {{ "Producto: " + task.product }} {{
+                        {{ "#" + index }}: {{ "Cliente: " + task.client }} {{ "Producto: " + task.product }} {{
                                 "Cantidad: " + task.price
                         }}
                     </p>
                     <div class="btn-group p-2">
                         <button @click="$router.push(`/tasks/${task._id}`)" class="btn btn-primary">Editar</button>
-                        <button @click="handleDelete(task._id)" class="btn btn-danger">Borrar</button>
+                        <button @click="handleDelete(task._id) " class="btn btn-danger">Borrar</button>
                     </div>
-
                 </div>
-
             </li>
         </ul>
     </div>
@@ -44,7 +42,7 @@ export default defineComponent({
             try {
                 console.log(id)
                 await deleteTask(id);
-                this.$router.push("/");
+                window.location.reload();
             } catch (error) {
                 console.log(error)
             }
